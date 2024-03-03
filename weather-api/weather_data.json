@@ -1,0 +1,15 @@
+{
+    "2024-03-03": {
+      "New York": {
+        "temperature": "15°C",
+        "humidity": "50%",
+        "weather": "Sunny"
+      },
+      "Los Angeles": {
+        "temperature": "22°C",
+        "humidity": "60%",
+        "weather": "Cloudy"
+      }
+    }
+  }
+  
