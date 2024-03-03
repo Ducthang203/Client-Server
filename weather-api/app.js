@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const fs = require('fs');
+const { Console } = require('console');
 
 const app = express();
+app.use(cors());
 
 app.get('/weather', (req, res) => {
     const { date, location } = req.query;
@@ -12,12 +15,36 @@ app.get('/weather', (req, res) => {
 
     const weatherData = {
         "2024-03-03": {
-            "New York": {
+            "HN": {
                 "temperature": "15°C",
                 "humidity": "50%",
                 "weather": "Sunny"
             },
-            "Los Angeles": {
+            "HCM": {
+                "temperature": "22°C",
+                "humidity": "60%",
+                "weather": "Cloudy"
+            }
+        },
+        "2024-03-02": {
+            "HN": {
+                "temperature": "15°C",
+                "humidity": "50%",
+                "weather": "Sunny"
+            },
+            "HCM": {
+                "temperature": "22°C",
+                "humidity": "60%",
+                "weather": "Cloudy"
+            }
+        },
+        "2024-03-01": {
+            "HCM": {
+                "temperature": "15°C",
+                "humidity": "50%",
+                "weather": "Sunny"
+            },
+            "HN": {
                 "temperature": "22°C",
                 "humidity": "60%",
                 "weather": "Cloudy"
@@ -25,7 +52,8 @@ app.get('/weather', (req, res) => {
         }
     };
 
-    const weatherInfo = weatherData;
+    const weatherInfo = weatherData[date][location];
+    
     if (!weatherInfo) {
         return res.status(404).json({ error: 'Weather information not found for the provided date and location' });
     }
